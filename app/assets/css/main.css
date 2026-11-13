@@ -122,6 +122,48 @@ textarea::placeholder {
   color: #83d5c5;
 }
 
+.bridge-demo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 28px;
+  padding: 16px;
+  border: 1px solid rgba(131, 213, 197, 0.32);
+  border-radius: 14px;
+  background: rgba(131, 213, 197, 0.08);
+}
+
+.bridge-demo strong {
+  color: #83d5c5;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.bridge-demo p {
+  margin: 5px 0 0;
+  color: #b7c3d5;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.primary-button {
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 15px;
+  color: #10221f;
+  background: #83d5c5;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.primary-button:hover {
+  background: #b0f0e2;
+}
+
 .stats {
   display: flex;
   gap: 12px;
@@ -151,6 +193,11 @@ textarea::placeholder {
 
 @media (max-width: 520px) {
   .note-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .bridge-demo {
     align-items: flex-start;
     flex-direction: column;
   }

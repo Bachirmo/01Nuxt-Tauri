@@ -1,0 +1,20 @@
+[package]
+name = "learning_notes"
+version = "0.1.0"
+description = "A Nuxt 4 and Tauri learning sandbox"
+authors = ["Learning Notes"]
+edition = "2021"
+
+[lib]
+name = "learning_notes_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]

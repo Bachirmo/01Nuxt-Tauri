@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { invoke } from '@tauri-apps/api/core'
+
 const storageKey = 'nuxt-tauri-learning-note'
 const note = ref('')
 const savedMessage = ref('Your note is saved locally in this browser.')
+const nativeMessage = ref('The native bridge is ready when this page runs in Tauri.')
 
 const characterCount = computed(() => note.value.length)
 const wordCount = computed(() => {
@@ -23,6 +26,14 @@ watch(note, (value) => {
 function clearNote() {
   note.value = ''
   savedMessage.value = 'Note cleared.'
+}
+
+async function greetFromRust() {
+  try {
+    nativeMessage.value = await invoke<string>('greet', { name: 'Nuxt' })
+  } catch {
+    nativeMessage.value = 'This button needs the Tauri desktop shell to call Rust.'
+  }
 }
 </script>
 
@@ -46,6 +57,14 @@ function clearNote() {
       <div class="note-footer">
         <span>{{ savedMessage }}</span>
         <button class="secondary-button" type="button" @click="clearNote">Clear note</button>
+      </div>
+
+      <div class="bridge-demo">
+        <div>
+          <strong>Frontend → Rust</strong>
+          <p>{{ nativeMessage }}</p>
+        </div>
+        <button class="primary-button" type="button" @click="greetFromRust">Call native command</button>
       </div>
 
       <dl class="stats" aria-label="Note statistics">
